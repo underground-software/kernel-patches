@@ -1,0 +1,296 @@
+From b5ddf4ca24f902b6a6cc0e40d055b04c35376aff Mon Sep 17 00:00:00 2001
+From: Charles Mirabile <cmirabil@redhat.com>
+Date: Thu, 19 Aug 2021 11:54:05 -0400
+Subject: [PATCH 1/3] drivers/mfd: sensehat: Raspberry Pi Sense HAT core driver
+Cc: Lee Jones <lee.jones@linaro.org>
+Cc: Stefan Wahren <stefan.wahren@i2se.com>
+Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
+Cc: linux-rpi-kernel@lists.infradead.org
+Cc: fedora-rpi@googlegroups.com
+
+This patch adds the core driver file, containing methods to communicate
+with the board over I2C. We also add the header file shared by all
+three drivers, containing common data and definitions. In addition, we
+add a config option to toggle compilation of the driver.
+
+Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+---
+ drivers/mfd/Kconfig          |   8 ++
+ drivers/mfd/Makefile         |   1 +
+ drivers/mfd/sensehat-core.c  | 168 +++++++++++++++++++++++++++++++++++
+ include/linux/mfd/sensehat.h |  55 ++++++++++++
+ 4 files changed, 232 insertions(+)
+ create mode 100644 drivers/mfd/sensehat-core.c
+ create mode 100644 include/linux/mfd/sensehat.h
+
+diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+index 6a3fd2d75f96..569972f0738f 100644
+--- a/drivers/mfd/Kconfig
++++ b/drivers/mfd/Kconfig
+@@ -11,6 +11,14 @@ config MFD_CORE
+ 	select IRQ_DOMAIN
+ 	default n
+ 
++config MFD_SENSEHAT_CORE
++	tristate "Raspberry Pi Sense HAT core functions"
++	depends on I2C
++	select MFD_CORE
++	help
++	  This is the core driver for the Raspberry Pi Sense HAT. This provides
++	  the necessary functions to communicate with the hardware.
++
+ config MFD_CS5535
+ 	tristate "AMD CS5535 and CS5536 southbridge core functions"
+ 	select MFD_CORE
+diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+index 8116c19d5fd4..d23262dc6a27 100644
+--- a/drivers/mfd/Makefile
++++ b/drivers/mfd/Makefile
+@@ -263,6 +263,7 @@ obj-$(CONFIG_MFD_ROHM_BD718XX)	+= rohm-bd718x7.o
+ obj-$(CONFIG_MFD_ROHM_BD957XMUF)	+= rohm-bd9576.o
+ obj-$(CONFIG_MFD_STMFX) 	+= stmfx.o
+ obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
++obj-$(CONFIG_MFD_SENSEHAT_CORE) += sensehat-core.o
+ obj-$(CONFIG_MFD_ACER_A500_EC)	+= acer-ec-a500.o
+ obj-$(CONFIG_MFD_QCOM_PM8008)	+= qcom-pm8008.o
+ 
+diff --git a/drivers/mfd/sensehat-core.c b/drivers/mfd/sensehat-core.c
+new file mode 100644
+index 000000000000..295b0abe2375
+--- /dev/null
++++ b/drivers/mfd/sensehat-core.c
+@@ -0,0 +1,168 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * Raspberry Pi Sense HAT core driver
++ * http://raspberrypi.org
++ *
++ * Copyright (C) 2015 Raspberry Pi
++ * Copyright (C) 2021 Charles Mirabile, Mwesigwa Guma, Joel Savitz
++ *
++ * Original Author: Serge Schneider
++ * Revised for upstream Linux by: Charles Mirabile, Mwesigwa Guma, Joel Savitz
++ *
++ * This driver is based on wm8350 implementation and was refactored to use the
++ * misc device subsystem rather than the deprecated framebuffer subsystem.
++ */
++
++#include <linux/module.h>
++#include <linux/moduleparam.h>
++#include <linux/err.h>
++#include <linux/init.h>
++#include <linux/i2c.h>
++#include <linux/platform_device.h>
++#include <linux/slab.h>
++
++#include <linux/mfd/sensehat.h>
++
++#define RPISENSE_DISPLAY		0x00
++#define RPISENSE_WAI			0xF0
++#define RPISENSE_VER			0xF1
++#define RPISENSE_KEYS			0xF2
++#define RPISENSE_EE_WP			0xF3
++
++#define RPISENSE_ID			's'
++
++static struct platform_device *
++sensehat_client_dev_register(struct sensehat *sensehat, const char *name);
++
++static int sensehat_probe(struct i2c_client *i2c,
++			       const struct i2c_device_id *id)
++{
++	int ret;
++
++	struct sensehat *sensehat = devm_kzalloc(&i2c->dev, sizeof(*sensehat), GFP_KERNEL);
++
++	if (!sensehat)
++		return -ENOMEM;
++
++	i2c_set_clientdata(i2c, sensehat);
++	sensehat->dev = &i2c->dev;
++	sensehat->i2c_client = i2c;
++
++
++	ret = i2c_smbus_read_byte_data(sensehat->i2c_client, RPISENSE_WAI);
++	if (ret < 0) {
++		dev_err(sensehat->dev, "failed to read from device");
++		return ret;
++	}
++
++	if (ret != RPISENSE_ID) {
++		dev_err(sensehat->dev, "expected device ID %i, got %i",
++			RPISENSE_ID, ret);
++		return -EINVAL;
++	}
++
++	ret = i2c_smbus_read_byte_data(sensehat->i2c_client, RPISENSE_VER);
++	if (ret < 0)
++		return ret;
++
++	dev_info(sensehat->dev,
++		 "Raspberry Pi Sense HAT firmware version %i\n", ret);
++
++	sensehat->joystick.pdev = sensehat_client_dev_register(sensehat,
++							       "sensehat-joystick");
++
++	if (IS_ERR(sensehat->joystick.pdev)) {
++		dev_err(sensehat->dev, "failed to register sensehat-joystick");
++		return PTR_ERR(sensehat->joystick.pdev);
++	}
++
++	sensehat->display.pdev = sensehat_client_dev_register(sensehat,
++								  "sensehat-display");
++
++	if (IS_ERR(sensehat->display.pdev)) {
++		dev_err(sensehat->dev, "failed to register sensehat-display");
++		return PTR_ERR(sensehat->display.pdev);
++	}
++
++	return 0;
++}
++
++static struct platform_device *
++sensehat_client_dev_register(struct sensehat *sensehat, const char *name)
++{
++	long ret = -ENOMEM;
++	struct platform_device *pdev = platform_device_alloc(name, -1);
++
++	if (!pdev)
++		goto alloc_fail;
++
++	pdev->dev.parent = sensehat->dev;
++	platform_set_drvdata(pdev, sensehat);
++
++	ret = platform_device_add(pdev);
++	if (ret)
++		goto add_fail;
++
++	ret = devm_add_action_or_reset(sensehat->dev,
++		(void *)platform_device_unregister, pdev);
++	if (ret)
++		goto alloc_fail;
++
++	return pdev;
++
++add_fail:
++	platform_device_put(pdev);
++alloc_fail:
++	return ERR_PTR(ret);
++}
++
++int sensehat_get_joystick_state(struct sensehat *sensehat)
++{
++	int ret = i2c_smbus_read_byte_data(sensehat->i2c_client, RPISENSE_KEYS);
++
++	return ret < 0 ? ret : ret & 0x1f;
++}
++EXPORT_SYMBOL_GPL(sensehat_get_joystick_state);
++
++int sensehat_update_display(struct sensehat *sensehat)
++{
++	int i, j, ret;
++	struct sensehat_display *display = &sensehat->display;
++	struct {u8 reg, pixel_data[8][3][8]; } msg;
++
++	msg.reg = RPISENSE_DISPLAY;
++	for (i = 0; i < 8; ++i) {
++		for (j = 0; j < 8; ++j) {
++			msg.pixel_data[i][0][j] = display->gamma[display->vmem[i][j].r];
++			msg.pixel_data[i][1][j] = display->gamma[display->vmem[i][j].g];
++			msg.pixel_data[i][2][j] = display->gamma[display->vmem[i][j].b];
++		}
++	}
++
++	ret = i2c_master_send(sensehat->i2c_client, (u8 *)&msg, sizeof(msg));
++	if (ret < 0)
++		dev_err(sensehat->dev, "Update to 8x8 LED matrix display failed");
++	return ret;
++}
++EXPORT_SYMBOL_GPL(sensehat_update_display);
++
++static const struct i2c_device_id sensehat_i2c_id[] = {
++	{ "sensehat", 0 },
++	{ "rpi-sense", 0 },
++	{ }
++};
++MODULE_DEVICE_TABLE(i2c, sensehat_i2c_id);
++
++static struct i2c_driver sensehat_driver = {
++	.driver = {
++		   .name = "sensehat",
++	},
++	.probe = sensehat_probe,
++	.id_table = sensehat_i2c_id,
++};
++
++module_i2c_driver(sensehat_driver);
++
++MODULE_DESCRIPTION("Raspberry Pi Sense HAT core driver");
++MODULE_AUTHOR("Serge Schneider <serge@raspberrypi.org>");
++MODULE_LICENSE("GPL");
+diff --git a/include/linux/mfd/sensehat.h b/include/linux/mfd/sensehat.h
+new file mode 100644
+index 000000000000..2701c3ff25bc
+--- /dev/null
++++ b/include/linux/mfd/sensehat.h
+@@ -0,0 +1,55 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++/*
++ * Raspberry Pi Sense HAT core driver
++ * http://raspberrypi.org
++ *
++ * Copyright (C) 2015 Raspberry Pi
++ * Copyright (C) 2021 Charles Mirabile, Mwesigwa Guma, Joel Savitz
++ *
++ * Original Author: Serge Schneider
++ * Revised for upstream Linux by: Charles Mirabile, Mwesigwa Guma, Joel Savitz
++ */
++
++#ifndef __LINUX_MFD_RPISENSE_H_
++#define __LINUX_MFD_RPISENSE_H_
++#include <linux/miscdevice.h>
++
++#define SENSEDISP_IOC_MAGIC 0xF1
++
++#define SENSEDISP_IOGET_GAMMA _IO(SENSEDISP_IOC_MAGIC, 0)
++#define SENSEDISP_IOSET_GAMMA _IO(SENSEDISP_IOC_MAGIC, 1)
++#define SENSEDISP_IORESET_GAMMA _IO(SENSEDISP_IOC_MAGIC, 2)
++
++struct sensehat {
++	struct device *dev;
++	struct i2c_client *i2c_client;
++
++	/* Client devices */
++	struct sensehat_joystick {
++		struct platform_device *pdev;
++		struct input_dev *keys_dev;
++		struct gpio_desc *keys_desc;
++		int keys_irq;
++	} joystick;
++
++	struct sensehat_display {
++		struct platform_device *pdev;
++		struct miscdevice mdev;
++		struct mutex rw_mtx;
++		u8 gamma[32];
++		struct {
++			u16 b:5, u:1, g:5, r:5;
++		} vmem[8][8];
++	} display;
++};
++
++enum gamma_preset {
++	GAMMA_DEFAULT = 0,
++	GAMMA_LOWLIGHT,
++	GAMMA_PRESET_COUNT,
++};
++
++int sensehat_get_joystick_state(struct sensehat *sensehat);
++int sensehat_update_display(struct sensehat *sensehat);
++
++#endif
+-- 
+2.27.0
+
