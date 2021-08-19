@@ -1,0 +1,71 @@
+From 4d19a608b5280b4a458adb61bb4e0eab40363e9e Mon Sep 17 00:00:00 2001
+From: Joel Savitz <jsavitz@redhat.com>
+Date: Fri, 6 Aug 2021 19:38:51 -0400
+Subject: [RFC PATCH 0/3] Raspberry Pi Sense HAT driver
+Cc: Lee Jones <lee.jones@linaro.org>
+Cc: Stefan Wahren <stefan.wahren@i2se.com>
+Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
+Cc: linux-rpi-kernel@lists.infradead.org
+Cc: fedora-rpi@googlegroups.com
+
+This patch series adds a set of drivers for operating the Sense HAT
+peripheral device. This board is an add on for the Raspberry Pi that is
+designed to connect using the GPIO connector via I2C.
+
+It features:
+	- a joystick
+	- an 8x8 RGB LED matrix display
+	- a whole bunch of environmental sensors with their own drivers
+	(those are already in upstream Linux)
+
+This is a refactor of the work of Serge Schneider, the author of a
+version of this driver that is currently in the Raspberry Pi downstream
+kernel. We modified his code to make it suitable for upstream Linux.
+
+A couple of tests are available for this driver in this repo:
+https://github.com/underground-software/sensehat/tree/master/tests
+	- color_test displays various solid colors on the LED panel
+	- framebuffer_test diplays a single lit cell that is
+	  controllable via the arrow keys or the joystick
+
+Though the driver is split into three modules, they are interdependent
+and meaningless in isolation. As such, we have grouped them together.
+
+This is a request for comments. Please let us know if you
+have any suggestions, complements, or harsh criticism. ;)
+
+Known issue:
+- We do not know how to integrate the device tree overlay into mainline
+  Linux. Fortunately, most Linux distrubtions designed for the Raspberry
+  Pi already include the approriate device tree overlay as a part of
+  their importation of all overlays from the downstream Raspberry Pi
+  kernel. Suggestions are welcome and appreciated.
+
+For more information about the Sense HAT, visit:
+https://www.raspberrypi.org/products/sense-hat/
+
+Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+
+Joel Savitz (3):
+  drivers/mfd: rpisense: Raspberry Pi senseHAT core driver
+  drivers/mfd: rpisense: Raspberry Pi senseHAT joystick driver
+  drivers/mfd: rpisense: Raspberry Pi senseHAT 8x8 LED matrix display
+    driver
+
+ drivers/mfd/Kconfig            |  10 ++
+ drivers/mfd/Makefile           |   3 +
+ drivers/mfd/rpisense-core.c    | 170 +++++++++++++++++++++++
+ drivers/mfd/rpisense-display.c | 242 +++++++++++++++++++++++++++++++++
+ drivers/mfd/rpisense-js.c      | 132 ++++++++++++++++++
+ include/linux/mfd/rpisense.h   |  55 ++++++++
+ 6 files changed, 612 insertions(+)
+ create mode 100644 drivers/mfd/rpisense-core.c
+ create mode 100644 drivers/mfd/rpisense-display.c
+ create mode 100644 drivers/mfd/rpisense-js.c
+ create mode 100644 include/linux/mfd/rpisense.h
+
+-- 
+2.27.0
+
