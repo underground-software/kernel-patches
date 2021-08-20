@@ -1,6 +1,3 @@
-From 06ae2c56e716bd631f7c66a7f48ff7460564863a Mon Sep 17 00:00:00 2001
-From: charliemirabile <46761267+charliemirabile@users.noreply.github.com>
-Date: Thu, 19 Aug 2021 11:54:52 -0400
 Subject: [PATCH 2/3] drivers/input/joystick: sensehat: Raspberry Pi Sense HAT joystick driver
 Cc: Lee Jones <lee.jones@linaro.org>
 Cc: Stefan Wahren <stefan.wahren@i2se.com>

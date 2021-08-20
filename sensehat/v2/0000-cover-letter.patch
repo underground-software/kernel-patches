@@ -1,6 +1,3 @@
-From 4d19a608b5280b4a458adb61bb4e0eab40363e9e Mon Sep 17 00:00:00 2001
-From: Joel Savitz <jsavitz@redhat.com>
-Date: Fri, 6 Aug 2021 19:38:51 -0400
 Subject: [PATCH 0/3] Raspberry Pi Sense HAT driver
 Cc: Lee Jones <lee.jones@linaro.org>
 Cc: Stefan Wahren <stefan.wahren@i2se.com>
@@ -34,7 +31,7 @@ and meaningless in isolation. As such, we have grouped them together.
 Known issue:
 - We do not know how to integrate the device tree overlay into mainline
   Linux. Fortunately, most Linux distrubtions designed for the Raspberry
-  Pi already include the approriate device tree overlay as a part of
+  Pi already include the appropriate device tree overlay as a part of
   their importation of all overlays from the downstream Raspberry Pi
   kernel. Suggestions are welcome and appreciated.
 

@@ -1,6 +1,3 @@
-From bee4fac39a845563a779c1f106d069a911b3c4b7 Mon Sep 17 00:00:00 2001
-From: charliemirabile <46761267+charliemirabile@users.noreply.github.com>
-Date: Thu, 19 Aug 2021 11:55:08 -0400
 Subject: [PATCH 3/3] drivers/auxdisplay: senshat Raspberry Pi Sense HAT display driver
 Cc: Lee Jones <lee.jones@linaro.org>
 Cc: Stefan Wahren <stefan.wahren@i2se.com>
