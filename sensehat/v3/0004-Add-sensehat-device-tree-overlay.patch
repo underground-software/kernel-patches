@@ -1,0 +1,90 @@
+From 7986b87afa0b3c17f357d5023317220ed7b3b52e Mon Sep 17 00:00:00 2001
+From: Charles Mirabile <cmirabil@redhat.com>
+Date: Fri, 20 Aug 2021 11:02:59 -0400
+Subject: [RFC PATCH 4/4] sensehat: Add device tree overlay (do not merge)
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: Serge Schneider <serge@raspberrypi.org>
+Cc: Stefan Wahren <stefan.wahren@i2se.com>
+Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
+Cc: linux-rpi-kernel@lists.infradead.org
+Cc: fedora-rpi@googlegroups.com
+
+This patch if an RFC. The overlay included here is suitable for the
+Sense HAT but we are not sure where overlays like this should go, or if we
+should even include it, because the Raspberry Pi kernel tree already
+includes that device tree blob that this was based on and most
+distributions for the Raspberry Pi include those blobs.
+
+The overlay is just in the root of the source tree since we did not know
+where to put it so this patch should not be merged in this state.
+
+Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+
+---
+ arch/arm/boot/dts/sensehat.dtbs | 51 +++++++++++++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
+ create mode 100644 arch/arm/boot/dts/sensehat.dtbs
+
+diff --git a/arch/arm/boot/dts/sensehat.dtbs b/arch/arm/boot/dts/sensehat.dtbs
+new file mode 100644
+index 000000000000..3f1c12c8f75f
+--- /dev/null
++++ b/arch/arm/boot/dts/sensehat.dtbs
+@@ -0,0 +1,51 @@
++/dts-v1/;
++
++/ {
++	compatible = "brcm,bcm2835";
++
++	fragment@0 {
++		target = <0xffffffff>;
++
++		__overlay__ {
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			status = "okay";
++
++			sensehat@46 {
++				compatible = "raspberrypi,sensehat";
++				reg = <0x46>;
++				keys-int-gpios = <0xffffffff 0x17 0x01>;
++				status = "okay";
++			};
++
++			lsm9ds1-magn@1c {
++				compatible = "st,lsm9ds1-magn";
++				reg = <0x1c>;
++				status = "okay";
++			};
++
++			lsm9ds1-accel6a {
++				compatible = "st,lsm9ds1-accel";
++				reg = <0x6a>;
++				status = "okay";
++			};
++
++			lps25h-press@5c {
++				compatible = "st,lps25h-press";
++				reg = <0x5c>;
++				status = "okay";
++			};
++
++			hts221-humid@5f {
++				compatible = "st,hts221-humid\0st,hts221";
++				reg = <0x5f>;
++				status = "okay";
++			};
++		};
++	};
++
++	__fixups__ {
++		i2c1 = "/fragment@0:target:0";
++		gpio = "/fragment@0/__overlay__/sensehat@46:keys-int-gpios:0";
++	};
++};
+-- 
+2.27.0
+
