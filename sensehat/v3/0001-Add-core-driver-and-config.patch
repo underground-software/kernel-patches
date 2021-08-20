@@ -1,4 +1,4 @@
-From 3c458ef64079fbd282deb74d1cb8d47915b7ff9b Mon Sep 17 00:00:00 2001
+From 27dc20257ef455d7b821212720034c0d65bd8024 Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Thu, 19 Aug 2021 11:54:05 -0400
 Subject: [RFC PATCH v2 1/4] drivers/mfd: sensehat: Raspberry Pi Sense HAT core driver
@@ -17,7 +17,6 @@ add a config option to toggle compilation of the driver.
 Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
 Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
 Signed-off-by: Joel Savitz <jsavitz@redhat.com>
-
 ---
  drivers/mfd/Kconfig          |   8 ++
  drivers/mfd/Makefile         |   1 +
@@ -295,3 +294,4 @@ index 000000000000..2701c3ff25bc
 +#endif
 -- 
 2.27.0
+

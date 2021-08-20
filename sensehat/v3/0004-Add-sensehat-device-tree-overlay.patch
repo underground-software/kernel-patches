@@ -1,4 +1,4 @@
-From 7986b87afa0b3c17f357d5023317220ed7b3b52e Mon Sep 17 00:00:00 2001
+From e099d612d0a62806e767afa47f33314e76081da2 Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Fri, 20 Aug 2021 11:02:59 -0400
 Subject: [RFC PATCH v2 4/4] sensehat: Add device tree overlay (do not merge)
@@ -22,9 +22,8 @@ where to put it so this patch should not be merged in this state.
 Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
 Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
 Signed-off-by: Joel Savitz <jsavitz@redhat.com>
-
 ---
- sensehat.dtbs | 51 +++++++++++++++++++++++++++++++++
+ sensehat.dtbs | 51 +++++++++++++++++++++++++++++++++++++++++++++++++++
  1 file changed, 51 insertions(+)
  create mode 100644 sensehat.dtbs
 
@@ -87,3 +86,4 @@ index 000000000000..3f1c12c8f75f
 +};
 -- 
 2.27.0
+

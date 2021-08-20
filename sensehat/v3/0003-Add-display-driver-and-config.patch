@@ -1,4 +1,4 @@
-From 4f544803919bee2f402150d801a8a8645696f5c9 Mon Sep 17 00:00:00 2001
+From 23406a9bed4e3aea953b9ce32b86dd4b9849a871 Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Thu, 19 Aug 2021 11:55:08 -0400
 Subject: [RFC PATCH v2 3/4] drivers/auxdisplay: senshat Raspberry Pi Sense HAT display driver
@@ -14,12 +14,11 @@ This patch implements control of the 8x8 RGB LED matrix display.
 Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
 Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
 Signed-off-by: Joel Savitz <jsavitz@redhat.com>
-
 ---
  drivers/auxdisplay/Kconfig            |   7 +
  drivers/auxdisplay/Makefile           |   1 +
- drivers/auxdisplay/sensehat-display.c | 234 ++++++++++++++++++++++++++
- 3 files changed, 242 insertions(+)
+ drivers/auxdisplay/sensehat-display.c | 233 ++++++++++++++++++++++++++
+ 3 files changed, 241 insertions(+)
  create mode 100644 drivers/auxdisplay/sensehat-display.c
 
 diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
@@ -29,7 +28,7 @@ index 1509cb74705a..24f5d68cfbff 100644
 @@ -193,6 +193,13 @@ config ARM_CHARLCD
  	  line and the Linux version on the second line, but that's
  	  still useful.
-
+ 
 +config SENSEHAT_DISPLAY
 +	tristate "Raspberry pi Sense HAT display driver"
 +	select MFD_SENSEHAT_CORE
@@ -51,10 +50,10 @@ index 307771027c89..7e9aa479586a 100644
 +obj-$(CONFIG_SENSEHAT_DISPLAY)	+= sensehat-display.o
 diff --git a/drivers/auxdisplay/sensehat-display.c b/drivers/auxdisplay/sensehat-display.c
 new file mode 100644
-index 000000000000..40f39dba986a
+index 000000000000..8a618a198351
 --- /dev/null
 +++ b/drivers/auxdisplay/sensehat-display.c
-@@ -0,0 +1,234 @@
+@@ -0,0 +1,233 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later
 +/*
 + * Raspberry Pi Sense HAT 8x8 LED matrix display driver
@@ -288,6 +287,6 @@ index 000000000000..40f39dba986a
 +MODULE_DESCRIPTION("Raspberry Pi Sense HAT 8x8 LED matrix display driver");
 +MODULE_AUTHOR("Serge Schneider <serge@raspberrypi.org>");
 +MODULE_LICENSE("GPL");
-+
 -- 
 2.27.0
+
