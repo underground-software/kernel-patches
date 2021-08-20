@@ -35,8 +35,8 @@ https://github.com/underground-software/sensehat/tree/master/tests
 	  controllable via the arrow keys or the joystick
 
 Known issue:
- - We are not sure how to integrate the device tree overlay for the
-   Sense HAT into mainline Linux, or if we even should at this time.
+	- We are not sure how to integrate the device tree overlay for the
+	Sense HAT into mainline Linux, or if we even should at this time.
 
 Fortunately, most Linux distrubtions that can run on the Raspberry Pi
 already include an appropriate device tree overlay since they often import
@@ -54,13 +54,13 @@ For more information about the Sense HAT, visit:
 https://www.raspberrypi.org/products/sense-hat/
 
 Changes since v1:
- - We included a device tree overlay for the Sense HAT
- - Based on Feedback from v1 we:
-  - Changed the style of a few lines
-  - Adding more error logging
-  - Changed the compatible strings to use the more common
-    "raspberrypi" instead of just "rpi"
-  - Renamed everything from rpisense to sensehat
+	- We included a device tree overlay for the Sense HAT
+	- Based on Feedback from v1 we:
+		- Changed the style of a few lines
+		- Adding more error logging
+		- Changed the compatible strings to use the more common
+		"raspberrypi" instead of just "rpi"
+		- Renamed everything from rpisense to sensehat
 
 Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
 Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
