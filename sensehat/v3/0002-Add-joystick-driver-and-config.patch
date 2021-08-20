@@ -1,7 +1,7 @@
 From f64b2b6b5b3fd3537da713ad150f150f7fe33fda Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Thu, 19 Aug 2021 11:54:52 -0400
-Subject: [PATCH 2/4] drivers/input/joystick: sensehat: Raspberry Pi Sense HAT joystick driver
+Subject: [RFC PATCH vs 2/4] drivers/input/joystick: sensehat: Raspberry Pi Sense HAT joystick driver
 Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 Cc: linux-input@vger.kernel.org
 Cc: Serge Schneider <serge@raspberrypi.org>

@@ -1,7 +1,7 @@
 From 7986b87afa0b3c17f357d5023317220ed7b3b52e Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Fri, 20 Aug 2021 11:02:59 -0400
-Subject: [RFC PATCH 4/4] sensehat: Add device tree overlay (do not merge)
+Subject: [RFC PATCH v2 4/4] sensehat: Add device tree overlay (do not merge)
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: devicetree@vger.kernel.org
 Cc: Serge Schneider <serge@raspberrypi.org>

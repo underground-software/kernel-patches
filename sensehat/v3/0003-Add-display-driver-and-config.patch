@@ -1,7 +1,7 @@
 From 4f544803919bee2f402150d801a8a8645696f5c9 Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Thu, 19 Aug 2021 11:55:08 -0400
-Subject: [PATCH 3/4] drivers/auxdisplay: senshat Raspberry Pi Sense HAT display driver
+Subject: [RFC PATCH v2 3/4] drivers/auxdisplay: senshat Raspberry Pi Sense HAT display driver
 Cc: Miguel Ojeda <ojeda@kernel.org>
 Cc: Serge Schneider <serge@raspberrypi.org>
 Cc: Stefan Wahren <stefan.wahren@i2se.com>
