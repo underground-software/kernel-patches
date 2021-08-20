@@ -34,10 +34,6 @@ https://github.com/underground-software/sensehat/tree/master/tests
 	- framebuffer_test diplays a single lit cell that is
 	  controllable via the arrow keys or the joystick
 
-Though the driver is split into three modules, they are interdependent
-and meaningless in isolation. As such, we have grouped them together
-for this patch set.
-
 Known issue:
  - We are not sure how to integrate the device tree overlay for the
    Sense HAT into mainline Linux, or if we even should at this time.
