@@ -10,7 +10,7 @@ Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
 Cc: linux-rpi-kernel@lists.infradead.org
 Cc: fedora-rpi@googlegroups.com
 
-This patch if an RFC. The overlay included here is suitable for the
+This patch is an RFC. The overlay included here is suitable for the
 Sense HAT but we are not sure where overlays like this should go, or if we
 should even include it, because the Raspberry Pi kernel tree already
 includes that device tree blob that this was based on and most
