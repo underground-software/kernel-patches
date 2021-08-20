@@ -24,15 +24,15 @@ Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
 Signed-off-by: Joel Savitz <jsavitz@redhat.com>
 
 ---
- arch/arm/boot/dts/sensehat.dtbs | 51 +++++++++++++++++++++++++++++++++
+ sensehat.dtbs | 51 +++++++++++++++++++++++++++++++++
  1 file changed, 51 insertions(+)
- create mode 100644 arch/arm/boot/dts/sensehat.dtbs
+ create mode 100644 sensehat.dtbs
 
-diff --git a/arch/arm/boot/dts/sensehat.dtbs b/arch/arm/boot/dts/sensehat.dtbs
+diff --git a/sensehat.dtbs b/sensehat.dtbs
 new file mode 100644
 index 000000000000..3f1c12c8f75f
 --- /dev/null
-+++ b/arch/arm/boot/dts/sensehat.dtbs
++++ b/sensehat.dtbs
 @@ -0,0 +1,51 @@
 +/dts-v1/;
 +
