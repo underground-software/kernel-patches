@@ -1,0 +1,44 @@
+From 5102167064b631589f86646386ae15e9a738d4ff Mon Sep 17 00:00:00 2001
+From: Charles Mirabile <cmirabil@redhat.com>
+Date: Fri, 29 Oct 2021 16:28:22 -0400
+Subject: [PATCH 5/5] MAINTAINERS: Add sensehat driver authors to MAINTAINERS
+Cc: Serge Schneider <serge@raspberrypi.org>
+Cc: Stefan Wahren <stefan.wahren@i2se.com>
+Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
+Cc: linux-rpi-kernel@lists.infradead.org
+Cc: fedora-rpi@googlegroups.com
+
+This patch adds the driver authors to MAINAINERS.
+
+Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+---
+ MAINTAINERS | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 3b79fd441dde..90fdd21d1db9 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -16882,6 +16882,17 @@ S:	Maintained
+ F:	drivers/misc/phantom.c
+ F:	include/uapi/linux/phantom.h
+ 
++SENSEHAT DRIVER
++M:	Charles Mirabile <cmirabil@redhat.com>
++M:	Mwesigwa Guma <mguma@redhat.com>
++M:	Joel Savitz <jsavitz@redhat.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
++F:	drivers/auxdisplay/sensehat-display.c
++F:	drivers/input/joystick/sensehat-joystick.c
++F:	drivers/mfd/sensehat-core.c
++F:	include/linux/mfd/sensehat.h
++
+ SENSIRION SCD30 CARBON DIOXIDE SENSOR DRIVER
+ M:	Tomasz Duszynski <tomasz.duszynski@octakon.com>
+ S:	Maintained
+-- 
+2.31.1
+
