@@ -1,9 +1,69 @@
 From edeb1a52b6c03ea5418c1b6b9f41e6cab1ccc582 Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Wed, 2 Feb 2022 16:01:36 -0500
-Subject: [PATCH 0/6] *** SUBJECT HERE ***
+Subject: [PATCH 0/6] Raspberry Pi Sense HAT driver
+Cc: Serge Schneider <serge@raspberrypi.org>
+Cc: Stefan Wahren <stefan.wahren@i2se.com>
+Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
+Cc: Mattias Brugger <mbrugger@suse.com>
+Cc: linux-rpi-kernel@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: fedora-rpi@googlegroups.com
 
-*** BLURB HERE ***
+This patch series adds a set of drivers for operating the Sense HAT
+peripheral device. This board is an add on for the Raspberry Pi that is
+designed to connect using the GPIO connector and communicate via I2C.
+
+It features:
+	- a joystick
+	- an 8x8 RGB LED matrix display
+	- a whole bunch of environmental sensors with their own drivers
+	  (those are already in upstream Linux)
+
+This is a refactor of the work of Serge Schneider, the author of a
+version of this driver that is currently in the Raspberry Pi downstream
+kernel. We modified his code to make it suitable for upstream Linux.
+
+A couple of tests are available for the driver in the test folder in
+this repo: https://github.com/underground-software/sensehat.git
+	- sensehat_joystick_test logs the input events from the
+	  joystick to the console
+	- sensehat_display_test displays various solid colors on
+	  the LED panel.
+	- full_sensehat_test displays a single lit cell that can be
+	  moved with the joystick. Pressing the joystick ends the
+	  program.
+
+For more information about the Sense HAT, visit:
+https://www.raspberrypi.org/products/sense-hat/
+
+Improvements since v5:
+	- The sensehat core driver has been removed and its functionality
+	  is now performed by simply adding the sensehat compatible string
+	  to the simple_mfd_i2c driver.
+	- the subdrivers now read information about their SMB registers and
+	  irqs from their own device tree meaning that these values are now
+	  configurable and no longer hard coded into the driver.
+	- As a result of removing the core driver and making each subdriver
+	  handle its own internal data itself, the drivers have finally become
+	  completely independant and so now it is finally truly posible to
+	  use more than one sensehat or more than one of its sub components
+	  in theory. (though in practice this would require modifying the
+	  firmware on the board).
+
+Fixes since v5:
+	- the joystick has been changed to use BTN_DPAD and BTN_SELECT
+	  instead of the arrow keys and enter, and lots of small issues
+	  with the joystick code have been fixed (thanks to Dmitry
+	  Torokhov for these suggestions)
+	- all forward declarations have been removed from the driver
+	  (thanks to Miguel Ojeda and Stefan Wahren for this suggestion)
+	- the userspace interface of the display driver has been changed to
+	  remove the need to process and copy the data as much before it can
+	  be sent to the device. (thanks to Matthias Brugger for this
+	  suggestion)
+	- fixed issue with interrupt parent property in device tree binding
+	  (thanks to Rob Herring for this suggestion)
 
 charliemirabile (6):
   drivers/mfd: sensehat: Add Raspberry Pi Sense HAT to simple_mfd_i2c
