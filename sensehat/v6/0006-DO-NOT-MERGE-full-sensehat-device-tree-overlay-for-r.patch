@@ -1,0 +1,100 @@
+From edeb1a52b6c03ea5418c1b6b9f41e6cab1ccc582 Mon Sep 17 00:00:00 2001
+From: Charles Mirabile <cmirabil@redhat.com>
+Date: Wed, 2 Feb 2022 14:56:14 -0500
+Subject: [PATCH 6/6] DO NOT MERGE: full sensehat device tree overlay for
+ raspberry pi 4
+Cc: Serge Schneider <serge@raspberrypi.org>
+Cc: Stefan Wahren <stefan.wahren@i2se.com>
+Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
+Cc: Mattias Brugger <mbrugger@suse.com>
+Cc: linux-rpi-kernel@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: fedora-rpi@googlegroups.com
+
+This patch shold not be merged - dtbs files are not stored in the
+kernel tree. We just provide this file so the code can be tested.
+
+This overlay is suitable for testing the driver, it can be compiled with
+dtc and put in the /boot/overlays/ folder then specified in config.txt
+by putting the lines:
+
+dtoverlay=		#suppress loading of default overlay for HAT
+dtoverlay=sensehat	#load custom overlay
+
+at the beginning before any other lines in config.txt
+
+Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
+Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+Co-developed-by: Joel Savitz <jsavitz@redhat.com>
+Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+---
+ sensehat.dtbs | 56 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+ create mode 100644 sensehat.dtbs
+
+diff --git a/sensehat.dtbs b/sensehat.dtbs
+new file mode 100644
+index 000000000000..5f1a9d62c9f4
+--- /dev/null
++++ b/sensehat.dtbs
+@@ -0,0 +1,56 @@
++/dts-v1/;
++/plugin/;
++
++/ {
++	compatible = "brcm,bcm2835";
++};
++
++&i2c1 {
++	#address-cells = <0x01>;
++	#size-cells = <0x00>;
++	status = "okay";
++
++	sensehat@46 {
++		#address-cells = <0x01>;
++		#size-cells = <0x00>;
++		compatible = "raspberrypi,sensehat";
++		reg = <0x46>;
++		interrupt-parent = <&gpio>;
++		status = "okay";
++		display@0 {
++			compatible = "raspberrypi,sensehat-display";
++			reg = <0x0>;
++			status = "okay";
++		};
++		joystick@f2 {
++			compatible = "raspberrypi,sensehat-joystick";
++			reg = <0xf2>;
++			interrupts = <23 1>;
++			status = "okay";
++		};
++	};
++
++	lsm9ds1-magn@1c {
++		compatible = "st,lsm9ds1-magn";
++		reg = <0x1c>;
++		status = "okay";
++	};
++
++	lsm9ds1-accel@6a {
++		compatible = "st,lsm9ds1-accel";
++		reg = <0x6a>;
++		status = "okay";
++	};
++
++	lps25h-press@5c {
++		compatible = "st,lps25h-press";
++		reg = <0x5c>;
++		status = "okay";
++	};
++
++	hts221-humid@5f {
++		compatible = "st,hts221-humid\0st,hts221";
++		reg = <0x5f>;
++		status = "okay";
++	};
++};
+-- 
+2.31.1
+
