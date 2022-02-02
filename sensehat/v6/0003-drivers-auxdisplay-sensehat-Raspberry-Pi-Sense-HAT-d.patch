@@ -1,5 +1,5 @@
-From 0a9ade316e9f33a0e735254c209720d97173c5ca Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
+From ce73e310dde01d54da3ba850d58ca5aede93a081 Mon Sep 17 00:00:00 2001
 Date: Wed, 2 Feb 2022 14:56:06 -0500
 Subject: [PATCH 3/6] drivers/auxdisplay: sensehat: Raspberry Pi Sense HAT
  display driver
@@ -82,7 +82,7 @@ index 6968ed4d3f0a..30b2b7934046 100644
 +obj-$(CONFIG_SENSEHAT_DISPLAY)	+= sensehat-display.o
 diff --git a/drivers/auxdisplay/sensehat-display.c b/drivers/auxdisplay/sensehat-display.c
 new file mode 100644
-index 000000000000..d1ce07012bc5
+index 000000000000..6d95226875e2
 --- /dev/null
 +++ b/drivers/auxdisplay/sensehat-display.c
 @@ -0,0 +1,264 @@
@@ -112,7 +112,7 @@ index 000000000000..d1ce07012bc5
 +#include <linux/miscdevice.h>
 +#include <linux/regmap.h>
 +#include <linux/property.h>
-+#include <linux/mfd/sensehat.h>
++#include <linux/sensehat.h>
 +
 +#define GAMMA_SIZE 32
 +#define VMEM_SIZE 192
@@ -352,7 +352,7 @@ index 000000000000..d1ce07012bc5
 +MODULE_LICENSE("GPL");
 diff --git a/include/uapi/linux/sensehat.h b/include/uapi/linux/sensehat.h
 new file mode 100644
-index 000000000000..71e27668b4c3
+index 000000000000..469b482d73f4
 --- /dev/null
 +++ b/include/uapi/linux/sensehat.h
 @@ -0,0 +1,28 @@
@@ -368,8 +368,8 @@ index 000000000000..71e27668b4c3
 + * Revised for upstream Linux by: Charles Mirabile, Mwesigwa Guma, Joel Savitz
 + */
 +
-+#ifndef __LINUX_MFD_SENSEHAT_H_
-+#define __LINUX_MFD_SENSEHAT_H_
++#ifndef _UAPILINUX_SENSEHAT_H_
++#define _UAPILINUX_SENSEHAT_H_
 +
 +#define SENSEDISP_IOC_MAGIC 0xF1
 +
@@ -378,9 +378,9 @@ index 000000000000..71e27668b4c3
 +#define SENSEDISP_IORESET_GAMMA _IO(SENSEDISP_IOC_MAGIC, 2)
 +
 +enum gamma_preset {
-+	GAMMA_DEFAULT = 0,
-+	GAMMA_LOWLIGHT,
-+	GAMMA_PRESET_COUNT,
++	SENSEHAT_GAMMA_DEFAULT = 0,
++	SENSEHAT_GAMMA_LOWLIGHT,
++	SENSEHAT_GAMMA_PRESET_COUNT,
 +};
 +
 +#endif
