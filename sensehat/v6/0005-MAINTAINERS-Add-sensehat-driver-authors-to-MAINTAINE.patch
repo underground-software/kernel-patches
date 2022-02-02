@@ -1,4 +1,4 @@
-From febf7c3c52a6b5ceb8e644490b2d3a200467e728 Mon Sep 17 00:00:00 2001
+From 5f220d980cab410340236c60f9f51bc2920c942f Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Wed, 2 Feb 2022 14:56:12 -0500
 Subject: [PATCH 5/6] MAINTAINERS: Add sensehat driver authors to MAINTAINERS

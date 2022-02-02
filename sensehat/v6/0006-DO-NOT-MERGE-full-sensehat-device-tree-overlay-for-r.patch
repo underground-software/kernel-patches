@@ -1,4 +1,4 @@
-From edeb1a52b6c03ea5418c1b6b9f41e6cab1ccc582 Mon Sep 17 00:00:00 2001
+From 85e41b5b0bcf3b7e2668a7fd68522d155e62cc7e Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Wed, 2 Feb 2022 14:56:14 -0500
 Subject: [PATCH 6/6] DO NOT MERGE: full sensehat device tree overlay for

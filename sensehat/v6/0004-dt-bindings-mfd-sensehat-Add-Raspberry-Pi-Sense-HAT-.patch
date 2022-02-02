@@ -1,4 +1,4 @@
-From 15530d79ef443729693415290fad89020ce8d517 Mon Sep 17 00:00:00 2001
+From fe99d582e00adb1ef7fd5bfd3baac80c38372e38 Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Wed, 2 Feb 2022 14:56:09 -0500
 Subject: [PATCH 4/6] dt-bindings: mfd: sensehat: Add Raspberry Pi Sense HAT

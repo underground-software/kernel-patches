@@ -1,4 +1,4 @@
-From 1179d6401cb2a839f8d7c3d86255d4d7ceed271e Mon Sep 17 00:00:00 2001
+From 0a9ade316e9f33a0e735254c209720d97173c5ca Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Wed, 2 Feb 2022 14:56:06 -0500
 Subject: [PATCH 3/6] drivers/auxdisplay: sensehat: Raspberry Pi Sense HAT
@@ -11,7 +11,6 @@ Cc: linux-rpi-kernel@lists.infradead.org
 Cc: linux-arm-kernel@lists.infradead.org
 Cc: fedora-rpi@googlegroups.com
 Cc: Miguel Ojeda <ojeda@kernel.org>
-Cc: Lee Jones <lee.jones@linaro.org>
 
 This patch adds the driver for the 8x8 RGB LED matrix display
 on the Sense HAT. It appears as a character device named sense-hat
@@ -48,10 +47,10 @@ Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
  drivers/auxdisplay/Kconfig            |   8 +
  drivers/auxdisplay/Makefile           |   1 +
  drivers/auxdisplay/sensehat-display.c | 264 ++++++++++++++++++++++++++
- include/linux/mfd/sensehat.h          |  28 +++
+ include/uapi/linux/sensehat.h         |  28 +++
  4 files changed, 301 insertions(+)
  create mode 100644 drivers/auxdisplay/sensehat-display.c
- create mode 100644 include/linux/mfd/sensehat.h
+ create mode 100644 include/uapi/linux/sensehat.h
 
 diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
 index 64012cda4d12..9bad1aade7a0 100644
@@ -351,11 +350,11 @@ index 000000000000..d1ce07012bc5
 +MODULE_DESCRIPTION("Raspberry Pi Sense HAT 8x8 LED matrix display driver");
 +MODULE_AUTHOR("Serge Schneider <serge@raspberrypi.org>");
 +MODULE_LICENSE("GPL");
-diff --git a/include/linux/mfd/sensehat.h b/include/linux/mfd/sensehat.h
+diff --git a/include/uapi/linux/sensehat.h b/include/uapi/linux/sensehat.h
 new file mode 100644
 index 000000000000..71e27668b4c3
 --- /dev/null
-+++ b/include/linux/mfd/sensehat.h
++++ b/include/uapi/linux/sensehat.h
 @@ -0,0 +1,28 @@
 +/* SPDX-License-Identifier: GPL-2.0-or-later */
 +/*
