@@ -1,4 +1,4 @@
-From 3287d47bc13aac35376cd88f8882122958f5f3f8 Mon Sep 17 00:00:00 2001
+From b545d321082b2ee7aaf73ffe769d4c0790f0af29 Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Wed, 2 Feb 2022 14:56:06 -0500
 Subject: [PATCH 3/6] drivers/auxdisplay: sensehat: Raspberry Pi Sense HAT
@@ -82,7 +82,7 @@ index 6968ed4d3f0a..30b2b7934046 100644
 +obj-$(CONFIG_SENSEHAT_DISPLAY)	+= sensehat-display.o
 diff --git a/drivers/auxdisplay/sensehat-display.c b/drivers/auxdisplay/sensehat-display.c
 new file mode 100644
-index 000000000000..6d95226875e2
+index 000000000000..08b397a544f0
 --- /dev/null
 +++ b/drivers/auxdisplay/sensehat-display.c
 @@ -0,0 +1,264 @@
@@ -131,13 +131,13 @@ index 000000000000..6d95226875e2
 +MODULE_PARM_DESC(lowlight, "Reduce LED matrix brightness to one third");
 +
 +static const u8 gamma_presets[][GAMMA_SIZE] = {
-+	[GAMMA_DEFAULT] = {
++	[SENSEHAT_GAMMA_DEFAULT] = {
 +		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01,
 +		0x02, 0x02, 0x03, 0x03, 0x04, 0x05, 0x06, 0x07,
 +		0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0E, 0x0F, 0x11,
 +		0x12, 0x14, 0x15, 0x17, 0x19, 0x1B, 0x1D, 0x1F,
 +	},
-+	[GAMMA_LOWLIGHT] = {
++	[SENSEHAT_GAMMA_LOWLIGHT] = {
 +		0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
 +		0x01, 0x01, 0x01, 0x01, 0x01, 0x02, 0x02, 0x02,
 +		0x03, 0x03, 0x03, 0x04, 0x04, 0x05, 0x05, 0x06,
@@ -253,7 +253,7 @@ index 000000000000..6d95226875e2
 +			ret = -EFAULT;
 +		break;
 +	case SENSEDISP_IORESET_GAMMA:
-+		if (arg >= GAMMA_PRESET_COUNT) {
++		if (arg >= SENSEHAT_GAMMA_PRESET_COUNT) {
 +			ret = -EINVAL;
 +			goto no_update;
 +		}
