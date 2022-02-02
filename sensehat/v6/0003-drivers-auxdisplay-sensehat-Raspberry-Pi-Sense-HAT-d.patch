@@ -1,5 +1,5 @@
+From 3287d47bc13aac35376cd88f8882122958f5f3f8 Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
-From ce73e310dde01d54da3ba850d58ca5aede93a081 Mon Sep 17 00:00:00 2001
 Date: Wed, 2 Feb 2022 14:56:06 -0500
 Subject: [PATCH 3/6] drivers/auxdisplay: sensehat: Raspberry Pi Sense HAT
  display driver
@@ -352,11 +352,11 @@ index 000000000000..6d95226875e2
 +MODULE_LICENSE("GPL");
 diff --git a/include/uapi/linux/sensehat.h b/include/uapi/linux/sensehat.h
 new file mode 100644
-index 000000000000..469b482d73f4
+index 000000000000..cae07568a5eb
 --- /dev/null
 +++ b/include/uapi/linux/sensehat.h
 @@ -0,0 +1,28 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
++/* SPDX-License-Identifier: GPL-2.0-or-later WITH Linux-syscall-note */
 +/*
 + * Raspberry Pi Sense HAT core driver
 + * http://raspberrypi.org
