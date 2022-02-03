@@ -46,7 +46,7 @@ Improvements since v5:
 	  configurable and no longer hard coded into the driver.
 	- As a result of removing the core driver and making each subdriver
 	  handle its own internal data itself, the drivers have finally become
-	  completely independant and so now it is finally truly posible to
+	  completely independent and so now it is finally truly possible to
 	  use more than one sensehat or more than one of its sub components
 	  in theory. (though in practice this would require modifying the
 	  firmware on the board).
