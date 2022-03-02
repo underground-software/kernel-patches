@@ -1,0 +1,48 @@
+From 14e69509ebb4f26a8dfac64166c5421e5836fa2e Mon Sep 17 00:00:00 2001
+From: Charles Mirabile <cmirabil@redhat.com>
+Date: Wed, 2 Mar 2022 16:52:50 -0500
+Subject: [PATCH v7 5/6] MAINTAINERS: Add sensehat driver authors to MAINTAINERS
+Cc: Serge Schneider <serge@raspberrypi.org>
+Cc: Stefan Wahren <stefan.wahren@i2se.com>
+Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
+Cc: Mattias Brugger <mbrugger@suse.com>
+Cc: linux-rpi-kernel@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: fedora-rpi@googlegroups.com
+
+This patch adds the driver authors to MAINAINERS.
+
+Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
+Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+Co-developed-by: Joel Savitz <jsavitz@redhat.com>
+Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+---
+ MAINTAINERS | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 4383949ff654..d6cb046ff751 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -17417,6 +17417,17 @@ F:	Documentation/ABI/testing/sysfs-bus-iio-chemical-sunrise-co2
+ F:	Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.yaml
+ F:	drivers/iio/chemical/sunrise_co2.c
+ 
++SENSEHAT DRIVER
++M:	Charles Mirabile <cmirabil@redhat.com>
++M:	Mwesigwa Guma <mguma@redhat.com>
++M:	Joel Savitz <jsavitz@redhat.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml
++F:	Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml
++F:	Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
++F:	drivers/auxdisplay/sensehat-display.c
++F:	drivers/input/joystick/sensehat-joystick.c
++
+ SENSIRION SCD30 CARBON DIOXIDE SENSOR DRIVER
+ M:	Tomasz Duszynski <tomasz.duszynski@octakon.com>
+ S:	Maintained
+-- 
+2.31.1
+
