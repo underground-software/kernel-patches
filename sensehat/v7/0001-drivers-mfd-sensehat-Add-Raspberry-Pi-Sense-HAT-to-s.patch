@@ -14,7 +14,7 @@ Cc: Lee Jones <lee.jones@linaro.org>
 
 This patch adds the compatible string for the Sense HAT device to
 the list of compatible strings in the simple_mfd_i2c driver so that
-it can match against the device and load its children and their drivers
+it can match against the device and load its children and their drivers.
 
 Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
 Signed-off-by: Mwesigwa Guma <mguma@redhat.com>

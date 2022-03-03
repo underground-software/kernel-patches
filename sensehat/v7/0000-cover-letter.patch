@@ -12,7 +12,7 @@ Cc: fedora-rpi@googlegroups.com
 
 This patch series adds a set of drivers for operating the Sense HAT
 peripheral device. This board is an add on for the Raspberry Pi that is
-designed to connect using the GPIO connector and communicate via I2C.
+designed to connect using the GPIO connector and communicates via I2C.
 
 It features:
 	- a joystick
@@ -39,9 +39,9 @@ https://www.raspberrypi.org/products/sense-hat/
 
 Changes since v6:
 	- we store the regmap for the sensehat inside the child structs
-	  so that we don' need to look it up every time in the functions
+	  so that we don't need to look it up every time in the functions
 	  that want to use it. Thanks to Nicolás Sáenz for the suggestion.
-	- Changed usespace layout of the display driver to rgb565 triples
+	- Changed userspace layout of the display driver to rgb565 triples
 	  and removed the gamma table lookup and the associated ioctl. If
 	  the user wants to recreate linear brightness scaling, they can
 	  use a lookup table on their end. Doing this also removes a lot
@@ -49,9 +49,9 @@ Changes since v6:
 	  this feature is actually for the better.
 	- Replaced if statement with call to `min_t` function in display
 	  read and write functions.
-	- Replaced the custom llssek implementation with a call to
+	- Replaced the custom llseek implementation with a call to
 	  `fixed_size_llseek`. Thanks to Miguel Ojeda for all of these
-	  great suggetions.
+	  great suggestions.
 	- Fixed issues with the yaml device tree bindings we missed last
 	  time due to not having yamllint installed. Thanks for Rob Herring
 	  (well his bot on his behalf :^)) for this suggestion.

@@ -11,7 +11,7 @@ Cc: linux-rpi-kernel@lists.infradead.org
 Cc: linux-arm-kernel@lists.infradead.org
 Cc: fedora-rpi@googlegroups.com
 
-This patch shold not be merged - dtbs files are not stored in the
+This patch should not be merged - dtbs files are not stored in the
 kernel tree. We just provide this file so the code can be tested.
 
 This overlay is suitable for testing the driver, it can be compiled with
