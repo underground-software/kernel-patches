@@ -1,0 +1,42 @@
+From 943eb4770660f452f69e6c88d45a6a4fbc7c851c Mon Sep 17 00:00:00 2001
+From: Charles Mirabile <cmirabil@redhat.com>
+Date: Mon, 11 Apr 2022 14:46:22 -0400
+Subject: [PATCH v8 1/6] drivers/mfd: sensehat: Add Raspberry Pi Sense HAT to
+ simple_mfd_i2c
+Cc: Serge Schneider <serge@raspberrypi.org>
+Cc: Stefan Wahren <stefan.wahren@i2se.com>
+Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
+Cc: Mattias Brugger <mbrugger@suse.com>
+Cc: linux-rpi-kernel@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: fedora-rpi@googlegroups.com
+Cc: Lee Jones <lee.jones@linaro.org>
+
+This patch adds the compatible string for the Sense HAT device to
+the list of compatible strings in the simple_mfd_i2c driver so that
+it can match against the device and load its children and their drivers
+
+Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
+Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+Co-developed-by: Joel Savitz <jsavitz@redhat.com>
+Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+---
+ drivers/mfd/simple-mfd-i2c.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+index f4c8fc3ee463..c47f36581f3f 100644
+--- a/drivers/mfd/simple-mfd-i2c.c
++++ b/drivers/mfd/simple-mfd-i2c.c
+@@ -75,6 +75,7 @@ static const struct simple_mfd_data silergy_sy7636a = {
+ static const struct of_device_id simple_mfd_i2c_of_match[] = {
+ 	{ .compatible = "kontron,sl28cpld" },
+ 	{ .compatible = "silergy,sy7636a", .data = &silergy_sy7636a},
++	{ .compatible = "raspberrypi,sensehat" },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
+-- 
+2.31.1
+
