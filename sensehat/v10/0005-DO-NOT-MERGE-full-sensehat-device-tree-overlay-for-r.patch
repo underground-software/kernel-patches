@@ -1,0 +1,96 @@
+From 4e4c80b2ee8f5a1f623390d24b1550e356c75a37 Mon Sep 17 00:00:00 2001
+From: Charles Mirabile <cmirabil@redhat.com>
+Date: Thu, 21 Jul 2022 14:33:42 -0400
+Subject: [PATCH 5/5] DO NOT MERGE: full sensehat device tree overlay for
+ raspberry pi 4
+Cc: Serge Schneider <serge@raspberrypi.org>
+Cc: Stefan Wahren <stefan.wahren@i2se.com>
+Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
+Cc: Mattias Brugger <mbrugger@suse.com>
+Cc: linux-rpi-kernel@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: fedora-rpi@googlegroups.com
+
+This patch shold not be merged - dtbs files are not stored in the
+kernel tree. We just provide this file so the code can be tested.
+
+This overlay is suitable for testing the driver, it can be compiled with
+dtc and put in the /boot/overlays/ folder then specified in config.txt
+by putting the lines:
+
+dtoverlay=		#suppress loading of default overlay for HAT
+dtoverlay=sensehat	#load custom overlay
+
+at the beginning before any other lines in config.txt
+
+Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
+Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+Co-developed-by: Joel Savitz <jsavitz@redhat.com>
+Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+---
+ sensehat.dtbs | 52 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+ create mode 100644 sensehat.dtbs
+
+diff --git a/sensehat.dtbs b/sensehat.dtbs
+new file mode 100644
+index 000000000000..9e5a6d9229b1
+--- /dev/null
++++ b/sensehat.dtbs
+@@ -0,0 +1,52 @@
++/dts-v1/;
++/plugin/;
++
++/ {
++	compatible = "brcm,bcm2835";
++};
++
++&i2c1 {
++	#address-cells = <0x01>;
++	#size-cells = <0x00>;
++	status = "okay";
++
++	sensehat@46 {
++		compatible = "raspberrypi,sensehat";
++		reg = <0x46>;
++		interrupt-parent = <&gpio>;
++		status = "okay";
++		display {
++			compatible = "raspberrypi,sensehat-display";
++			status = "okay";
++		};
++		joystick {
++			compatible = "raspberrypi,sensehat-joystick";
++			interrupts = <23 1>;
++			status = "okay";
++		};
++	};
++
++	lsm9ds1-magn@1c {
++		compatible = "st,lsm9ds1-magn";
++		reg = <0x1c>;
++		status = "okay";
++	};
++
++	lsm9ds1-accel@6a {
++		compatible = "st,lsm9ds1-accel";
++		reg = <0x6a>;
++		status = "okay";
++	};
++
++	lps25h-press@5c {
++		compatible = "st,lps25h-press";
++		reg = <0x5c>;
++		status = "okay";
++	};
++
++	hts221-humid@5f {
++		compatible = "st,hts221-humid\0st,hts221";
++		reg = <0x5f>;
++		status = "okay";
++	};
++};
+-- 
+2.36.1
+
