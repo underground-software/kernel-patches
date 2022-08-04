@@ -2,6 +2,7 @@ From 4e4c80b2ee8f5a1f623390d24b1550e356c75a37 Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Thu, 21 Jul 2022 14:38:06 -0400
 Subject: [PATCH v10 0/6] Raspberry Pi Sense HAT driver
+Cc: Peter Robinson <pbrobinson@gmail.com>
 Cc: Serge Schneider <serge@raspberrypi.org>
 Cc: Stefan Wahren <stefan.wahren@i2se.com>
 Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>

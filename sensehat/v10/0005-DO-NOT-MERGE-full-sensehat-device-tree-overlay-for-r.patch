@@ -3,6 +3,7 @@ From: Charles Mirabile <cmirabil@redhat.com>
 Date: Thu, 21 Jul 2022 14:33:42 -0400
 Subject: [PATCH 5/5] DO NOT MERGE: full sensehat device tree overlay for
  raspberry pi 4
+Cc: Peter Robinson <pbrobinson@gmail.com>
 Cc: Serge Schneider <serge@raspberrypi.org>
 Cc: Stefan Wahren <stefan.wahren@i2se.com>
 Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>

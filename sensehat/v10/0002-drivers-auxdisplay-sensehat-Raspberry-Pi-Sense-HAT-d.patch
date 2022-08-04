@@ -3,6 +3,7 @@ From: Charles Mirabile <cmirabil@redhat.com>
 Date: Thu, 21 Jul 2022 14:33:42 -0400
 Subject: [PATCH 2/5] drivers/auxdisplay: sensehat: Raspberry Pi Sense HAT
  display driver
+Cc: Peter Robinson <pbrobinson@gmail.com>
 Cc: Serge Schneider <serge@raspberrypi.org>
 Cc: Stefan Wahren <stefan.wahren@i2se.com>
 Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>

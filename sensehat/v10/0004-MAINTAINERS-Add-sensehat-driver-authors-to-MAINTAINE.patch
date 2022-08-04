@@ -2,6 +2,7 @@ From 7f109a7e1013c13dd337dd351435b49f3e20050c Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
 Date: Thu, 21 Jul 2022 14:33:42 -0400
 Subject: [PATCH 4/5] MAINTAINERS: Add sensehat driver authors to MAINTAINERS
+Cc: Peter Robinson <pbrobinson@gmail.com>
 Cc: Serge Schneider <serge@raspberrypi.org>
 Cc: Stefan Wahren <stefan.wahren@i2se.com>
 Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
