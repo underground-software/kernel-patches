@@ -9,7 +9,7 @@ Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
 Cc: Mattias Brugger <mbrugger@suse.com>
 Cc: linux-rpi-kernel@lists.infradead.org
 Cc: linux-arm-kernel@lists.infradead.org
-Cc: fedora-rpi@googlegroups.com
+Cc: rh-kdlp@googlegroups.com
 
 This patch series adds a set of drivers for operating the Sense HAT
 peripheral device. This board is an add on for the Raspberry Pi that is

@@ -10,7 +10,7 @@ Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
 Cc: Mattias Brugger <mbrugger@suse.com>
 Cc: linux-rpi-kernel@lists.infradead.org
 Cc: linux-arm-kernel@lists.infradead.org
-Cc: fedora-rpi@googlegroups.com
+Cc: rh-kdlp@googlegroups.com
 
 This patch shold not be merged - dtbs files are not stored in the
 kernel tree. We just provide this file so the code can be tested.

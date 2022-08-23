@@ -9,7 +9,7 @@ Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
 Cc: Mattias Brugger <mbrugger@suse.com>
 Cc: linux-rpi-kernel@lists.infradead.org
 Cc: linux-arm-kernel@lists.infradead.org
-Cc: fedora-rpi@googlegroups.com
+Cc: rh-kdlp@googlegroups.com
 
 This patch adds the driver authors to MAINAINERS.
 

@@ -10,7 +10,7 @@ Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
 Cc: Mattias Brugger <mbrugger@suse.com>
 Cc: linux-rpi-kernel@lists.infradead.org
 Cc: linux-arm-kernel@lists.infradead.org
-Cc: fedora-rpi@googlegroups.com
+Cc: rh-kdlp@googlegroups.com
 Cc: Miguel Ojeda <ojeda@kernel.org>
 
 This patch adds the driver for the 8x8 RGB LED matrix display
