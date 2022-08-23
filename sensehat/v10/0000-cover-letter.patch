@@ -39,9 +39,21 @@ For more information about the Sense HAT, visit:
 https://www.raspberrypi.org/products/sense-hat/
 
 Changes since v9:
-	-The driver for the sensehat joystick was accepted upstream so
-	it is no longer needed in this patchset.
-	- The code is otherwise unchanged
+	- The driver for the sensehat joystick was accepted upstream so
+	  it is no longer included in this patchset.
+	- Some of the people involved in the development of earlier
+	  versions of these patches are no longer involved in the project
+	  so they have been removed from the list of maintainers and the
+	  patches.
+	- The code is completely unchanged and so based on the discussions
+	  from version 9 of the patches, it should be ready to be merged.
+
+My appologies for the long delay between v9 and v10 especially given the
+fact that there are no changes to the code. We appreciate the maintainers'
+patience and guidance throughout all 10 versions of this sensehat patchset,
+and we are excited for this driver to hopefully be fully accepted.
+
+Best - Charlie
 
 Co-developed-by: Joel Slebodnick <jslebodn@redhat.com>
 Signed-off-by: Joel Slebodnick <jslebodn@redhat.com>
