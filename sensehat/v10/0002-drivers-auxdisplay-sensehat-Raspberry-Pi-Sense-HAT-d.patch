@@ -6,7 +6,7 @@ Subject: [PATCH 2/5] drivers/auxdisplay: sensehat: Raspberry Pi Sense HAT
 Cc: Peter Robinson <pbrobinson@gmail.com>
 Cc: Serge Schneider <serge@raspberrypi.org>
 Cc: Stefan Wahren <stefan.wahren@i2se.com>
-Cc: Nicolas Saenz Julienne <nsaenzju@redhat.com>
+Cc: Nicolas Saenz Julienne <nicolassaenzj@gmail.com>
 Cc: Mattias Brugger <mbrugger@suse.com>
 Cc: linux-rpi-kernel@lists.infradead.org
 Cc: linux-arm-kernel@lists.infradead.org
