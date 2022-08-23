@@ -1,6 +1,6 @@
-From 7fdb2b3870e660853fb23513e2c041c611c84f84 Mon Sep 17 00:00:00 2001
+From a0d46b51ea335de9f230cb6d24ed0086f2eb0c1e Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
-Date: Thu, 21 Jul 2022 14:33:42 -0400
+Date: Tue, 23 Aug 2022 11:59:32 -0400
 Subject: [PATCH 3/5] dt-bindings: mfd: sensehat: Add Raspberry Pi Sense HAT
  schema
 Cc: Peter Robinson <pbrobinson@gmail.com>
@@ -24,27 +24,25 @@ Cc: linux-input@vger.kernel.org
 This patch adds the device tree bindings for the Sense HAT
 and each of its children devices in yaml form.
 
-Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
-Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
 Co-developed-by: Joel Savitz <jsavitz@redhat.com>
 Signed-off-by: Joel Savitz <jsavitz@redhat.com>
 Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../raspberrypi,sensehat-display.yaml         | 27 +++++++++
- .../input/raspberrypi,sensehat-joystick.yaml  | 32 ++++++++++
- .../bindings/mfd/raspberrypi,sensehat.yaml    | 58 +++++++++++++++++++
- 3 files changed, 117 insertions(+)
+ .../raspberrypi,sensehat-display.yaml         | 26 +++++++++
+ .../input/raspberrypi,sensehat-joystick.yaml  | 31 ++++++++++
+ .../bindings/mfd/raspberrypi,sensehat.yaml    | 57 +++++++++++++++++++
+ 3 files changed, 114 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml
  create mode 100644 Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml
  create mode 100644 Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
 
 diff --git a/Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml b/Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml
 new file mode 100644
-index 000000000000..5e41d6b7817d
+index 000000000000..0cf59b0a519c
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml
-@@ -0,0 +1,27 @@
+@@ -0,0 +1,26 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
@@ -55,7 +53,6 @@ index 000000000000..5e41d6b7817d
 +
 +maintainers:
 +  - Charles Mirabile <cmirabil@redhat.com>
-+  - Mwesigwa Guma <mguma@redhat.com>
 +  - Joel Savitz <jsavitz@redhat.com>
 +
 +description:
@@ -74,10 +71,10 @@ index 000000000000..5e41d6b7817d
 +additionalProperties: false
 diff --git a/Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml b/Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml
 new file mode 100644
-index 000000000000..2c8bc10e6436
+index 000000000000..98b03878a570
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml
-@@ -0,0 +1,32 @@
+@@ -0,0 +1,31 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
@@ -88,7 +85,6 @@ index 000000000000..2c8bc10e6436
 +
 +maintainers:
 +  - Charles Mirabile <cmirabil@redhat.com>
-+  - Mwesigwa Guma <mguma@redhat.com>
 +  - Joel Savitz <jsavitz@redhat.com>
 +
 +description:
@@ -112,10 +108,10 @@ index 000000000000..2c8bc10e6436
 +additionalProperties: false
 diff --git a/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml b/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
 new file mode 100644
-index 000000000000..6ac43dfc0270
+index 000000000000..bc53834fbaa7
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
-@@ -0,0 +1,58 @@
+@@ -0,0 +1,57 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
@@ -126,7 +122,6 @@ index 000000000000..6ac43dfc0270
 +
 +maintainers:
 +  - Charles Mirabile <cmirabil@redhat.com>
-+  - Mwesigwa Guma <mguma@redhat.com>
 +  - Joel Savitz <jsavitz@redhat.com>
 +
 +description:
@@ -175,5 +170,5 @@ index 000000000000..6ac43dfc0270
 +      };
 +    };
 -- 
-2.36.1
+2.31.1
 

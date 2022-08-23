@@ -1,6 +1,6 @@
-From 2b248958f0431b923e36652c29f46a769714594f Mon Sep 17 00:00:00 2001
+From 2e605d240c569128d0820b89ce48c54e928a6828 Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
-Date: Thu, 21 Jul 2022 14:33:42 -0400
+Date: Tue, 23 Aug 2022 11:59:30 -0400
 Subject: [PATCH 1/5] drivers/mfd: sensehat: Add Raspberry Pi Sense HAT to
  simple_mfd_i2c
 Cc: Peter Robinson <pbrobinson@gmail.com>
@@ -17,8 +17,6 @@ This patch adds the compatible string for the Sense HAT device to
 the list of compatible strings in the simple_mfd_i2c driver so that
 it can match against the device and load its children and their drivers
 
-Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
-Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
 Co-developed-by: Joel Savitz <jsavitz@redhat.com>
 Signed-off-by: Joel Savitz <jsavitz@redhat.com>
 Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
@@ -39,5 +37,5 @@ index f4c8fc3ee463..c47f36581f3f 100644
  };
  MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
 -- 
-2.36.1
+2.31.1
 

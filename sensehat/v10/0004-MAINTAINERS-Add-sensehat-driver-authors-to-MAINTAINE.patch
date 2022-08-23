@@ -1,6 +1,6 @@
-From 7f109a7e1013c13dd337dd351435b49f3e20050c Mon Sep 17 00:00:00 2001
+From e4c043c79905bd02d33d07ab611ee268a9ddaef5 Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
-Date: Thu, 21 Jul 2022 14:33:42 -0400
+Date: Tue, 23 Aug 2022 11:59:33 -0400
 Subject: [PATCH 4/5] MAINTAINERS: Add sensehat driver authors to MAINTAINERS
 Cc: Peter Robinson <pbrobinson@gmail.com>
 Cc: Serge Schneider <serge@raspberrypi.org>
@@ -13,26 +13,23 @@ Cc: fedora-rpi@googlegroups.com
 
 This patch adds the driver authors to MAINAINERS.
 
-Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
-Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
 Co-developed-by: Joel Savitz <jsavitz@redhat.com>
 Signed-off-by: Joel Savitz <jsavitz@redhat.com>
 Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
 ---
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ MAINTAINERS | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 651616ed8ae2..a3e2a556f21a 100644
+index 96f47a7865d6..3af3238a1535 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -18088,6 +18088,17 @@ F:	Documentation/ABI/testing/sysfs-bus-iio-chemical-sunrise-co2
+@@ -18344,6 +18344,16 @@ F:	Documentation/ABI/testing/sysfs-bus-iio-chemical-sunrise-co2
  F:	Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.yaml
  F:	drivers/iio/chemical/sunrise_co2.c
  
 +SENSEHAT DRIVER
 +M:	Charles Mirabile <cmirabil@redhat.com>
-+M:	Mwesigwa Guma <mguma@redhat.com>
 +M:	Joel Savitz <jsavitz@redhat.com>
 +S:	Maintained
 +F:	Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml
@@ -45,5 +42,5 @@ index 651616ed8ae2..a3e2a556f21a 100644
  M:	Tomasz Duszynski <tomasz.duszynski@octakon.com>
  S:	Maintained
 -- 
-2.36.1
+2.31.1
 

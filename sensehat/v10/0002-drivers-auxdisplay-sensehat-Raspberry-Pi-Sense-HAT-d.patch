@@ -1,6 +1,6 @@
-From ad2c3ca6288da59e98490c6ba488f7e260071db1 Mon Sep 17 00:00:00 2001
+From 1f8c00e8851aa67a11e25b8e67488a167857a68c Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
-Date: Thu, 21 Jul 2022 14:33:42 -0400
+Date: Tue, 23 Aug 2022 11:59:31 -0400
 Subject: [PATCH 2/5] drivers/auxdisplay: sensehat: Raspberry Pi Sense HAT
  display driver
 Cc: Peter Robinson <pbrobinson@gmail.com>
@@ -18,10 +18,6 @@ on the Sense HAT. It appears as a character device named sense-hat
 in /dev/. That special file is 192 bytes large and contains 64
 RGB triplets (3 bytes each) one for each pixel in row major order.
 
-Co-developed-by: Daniel Bauman <dbauman@redhat.com>
-Signed-off-by: Daniel Bauman <dbauman@redhat.com>
-Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
-Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
 Co-developed-by: Joel Savitz <jsavitz@redhat.com>
 Signed-off-by: Joel Savitz <jsavitz@redhat.com>
 Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
@@ -62,7 +58,7 @@ index 6968ed4d3f0a..30b2b7934046 100644
 +obj-$(CONFIG_SENSEHAT_DISPLAY)	+= sensehat-display.o
 diff --git a/drivers/auxdisplay/sensehat-display.c b/drivers/auxdisplay/sensehat-display.c
 new file mode 100644
-index 000000000000..9faaee5cde8a
+index 000000000000..08c0c4338f3e
 --- /dev/null
 +++ b/drivers/auxdisplay/sensehat-display.c
 @@ -0,0 +1,205 @@
@@ -72,10 +68,10 @@ index 000000000000..9faaee5cde8a
 + * http://raspberrypi.org
 + *
 + * Copyright (C) 2015 Raspberry Pi
-+ * Copyright (C) 2021 Charles Mirabile, Mwesigwa Guma, Joel Savitz
++ * Copyright (C) 2021 Charles Mirabile, Joel Savitz
 + *
 + * Original Author: Serge Schneider
-+ * Revised for upstream Linux by: Charles Mirabile, Mwesigwa Guma, Joel Savitz
++ * Revised for upstream Linux by: Charles Mirabile, Joel Savitz
 + */
 +
 +#include <linux/module.h>
@@ -272,5 +268,5 @@ index 000000000000..9faaee5cde8a
 +MODULE_AUTHOR("Serge Schneider <serge@raspberrypi.org>");
 +MODULE_LICENSE("GPL");
 -- 
-2.36.1
+2.31.1
 

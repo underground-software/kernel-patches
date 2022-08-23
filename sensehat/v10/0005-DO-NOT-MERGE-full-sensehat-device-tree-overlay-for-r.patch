@@ -1,6 +1,6 @@
-From 4e4c80b2ee8f5a1f623390d24b1550e356c75a37 Mon Sep 17 00:00:00 2001
+From f65450f2d8853500c5920fb15a5edec92706dcef Mon Sep 17 00:00:00 2001
 From: Charles Mirabile <cmirabil@redhat.com>
-Date: Thu, 21 Jul 2022 14:33:42 -0400
+Date: Tue, 23 Aug 2022 11:59:34 -0400
 Subject: [PATCH 5/5] DO NOT MERGE: full sensehat device tree overlay for
  raspberry pi 4
 Cc: Peter Robinson <pbrobinson@gmail.com>
@@ -24,8 +24,6 @@ dtoverlay=sensehat	#load custom overlay
 
 at the beginning before any other lines in config.txt
 
-Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
-Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
 Co-developed-by: Joel Savitz <jsavitz@redhat.com>
 Signed-off-by: Joel Savitz <jsavitz@redhat.com>
 Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
@@ -93,5 +91,5 @@ index 000000000000..9e5a6d9229b1
 +	};
 +};
 -- 
-2.36.1
+2.31.1
 
